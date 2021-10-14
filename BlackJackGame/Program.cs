@@ -25,9 +25,9 @@ namespace BlackJackGame
         List<int> cards = new List<int>();
         public void deckAdd()
         {
-            for(int i = 2; i <= 10; i++)
+            for (int i = 2; i <= 10; i++)
             {
-                for(int j = 0; j < 4; j++)
+                for (int j = 0; j < 4; j++)
                 {
                     cards.Add(i);
                 }
@@ -41,6 +41,13 @@ namespace BlackJackGame
         public void deckRemove()
         {
             cards.Clear();
+        }
+        public void addEss(int ess)
+        {
+            for(int i = 0; i < 4; i++)
+            {
+                cards.Add(ess);
+            }
         }
     }
 }
