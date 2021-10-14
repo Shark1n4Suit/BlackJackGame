@@ -8,7 +8,12 @@ namespace BlackJackGame
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //Du får välja vad ess är värt
+            int ess;
+            Console.WriteLine("Hej och välkommen till Black Jack");
+            Console.Write("vänligen skriv in vad ess ska vara värt(1 eller 11):");
+            ess= Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("bra, ess är nu värt" + ess);
         }
     }
     class deck
@@ -22,6 +27,9 @@ namespace BlackJackGame
                 {
                     cards.Add(i);
                 }
+                
+            
+                
             }
         }
     }
