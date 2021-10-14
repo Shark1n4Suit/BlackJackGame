@@ -1,5 +1,5 @@
 ﻿using System;
-
+/* */
 namespace BlackJackGame
 {
     class Program
@@ -9,7 +9,7 @@ namespace BlackJackGame
             Console.WriteLine("Hello World!");
         }
     }
-     class deck
+    class deck
     {
         List<int> cards = new List<int>();
         public void deckAdd()
