@@ -27,10 +27,17 @@ namespace BlackJackGame
                 {
                     cards.Add(i);
                 }
-                
-            
-                
             }
         }
+        public int draw()
+        {
+            Random rnd = new Random();
+            return cards[rnd.Next(0, cards.Count)];
+        }
+        public void deckRemove()
+        {
+            cards.Clear();
+        }
+    }
     }
 }
