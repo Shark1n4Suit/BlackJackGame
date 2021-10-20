@@ -1,23 +1,49 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-/*
-Class deck kommer ha metoderna draw, deckAdd och deckRemove. gör så att man kan resetta decken enkelt och dra kort som man vill
-*/
+using System.Linq;
+
 namespace BlackJackGame
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //Du får välja vad ess är värt
-            int ess;
-            Console.WriteLine("Hej och välkommen till Black Jack");
-            Console.Write("vänligen skriv in vad ess ska vara värt(1 eller 11):");
-            ess= Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("bra, ess är nu värt" + ess);
-            Console.WriteLine("då kör vi");
-            //spelare och bot får två kort
-            
+            deck bj = new deck();
+            int bet;
+            int money = 100;
+            Console.WriteLine("Click enter to start");
+            Console.ReadKey();
+            while (true)
+            {
+                bj.deckAdd();
+                Console.WriteLine("Enter bet value");
+                bet = Convert.ToInt32(Console.ReadLine());
+                money -= bet;
+                List<int> player = new List<int>();
+                List<int> dealer = new List<int>();
+                for(int i = 0; i < 2; i++)
+                {
+                    player.Add(bj.draw());
+                    dealer.Add(bj.draw());
+                }
+                Console.WriteLine("Cards are " + player[0] + " and " + player[1] + "\nTotal is " + player.Sum(x => Convert.ToInt32(x)));
+                if(player.Sum(x => Convert.ToInt32(x)) == 21)
+                {
+                    Console.WriteLine("Blackjack!");
+                    money += bet + bet;
+                    bj.deckRemove();
+                    continue;
+                }
+                if(player.Sum(x => Convert.ToInt32(x)) > 21)
+                {
+                    if (player.Contains(11))
+                    {
+                        player.Remove(player.IndexOf(11));
+                        player.Add(1);
+                    }
+                    else Console.WriteLine("Bust!"); continue;
+                }
+            }
         }
     }
     class deck
@@ -25,11 +51,18 @@ namespace BlackJackGame
         List<int> cards = new List<int>();
         public void deckAdd()
         {
-            for (int i = 2; i <= 10; i++)
+            for (int i = 2; i <= 11; i++)
             {
                 for (int j = 0; j < 4; j++)
                 {
                     cards.Add(i);
+                    if(i == 10)
+                    {
+                        for(int k = 0; k < 4; k++)
+                        {
+                            cards.Add(i);
+                        }
+                    }
                 }
             }
         }
@@ -42,67 +75,5 @@ namespace BlackJackGame
         {
             cards.Clear();
         }
-        public void addEss(int ess)
-        {
-            for(int i = 0; i < 4; i++)
-            {
-                cards.Add(ess);
-            }
-        }
     }
 }
-
- /*class Program
-    {
-        static void Main(string[] args)
-        {
-            const int GROUP_SIZE = 4;
-            const int GROUP_AMOUNT = 8;
-
-            string[] studentArray =
-             {
-             "Abdalaziz", "Johannes", "Eliyah", "Ebba", "Ossian", "Adam",
-             "Gabriel", "Ahmad", "Mukhtar", "Hugo", "Yayhe", "Alexander",
-             "Theo", "Albin", "John", "Leo", "Benjamin", "Erik", "Omar",
-             "Ajob", "Emil", "Jim", "Viggo", "Hassan", "Abd", "Noah",
-             "Sebastian", "Alfons", "Romeo", "Annie", "Gvidas", "Samir"
-            };
-            List<string> students = new List<string>();
-
-            for (int i = 0; i < studentArray.Length; i++)
-            {
-                students.Add(studentArray[i]);
-
-            }
-            Console.WriteLine("antal elever i listan " + students.Count);
-
-            Random random = new Random();
-            
-            for (int i = 1; i < GROUP_AMOUNT + 1; i++)
-            {
-                Console.WriteLine("group" + i + ":");
-
-                for (int j = 0; j < GROUP_SIZE; j++)
-                {
-                    if (students.Count == 0)
-                    {
-                        Console.WriteLine("Alla elever har fått en grupp");
-                        break;
-
-                    }
-                    int localValue = random.Next(0, students.Count);
-                    Console.WriteLine(students[localValue]);
-
-                    students.RemoveAt(localValue);
-
-                }
-                Console.Write("\n");
-            }
-            Console.WriteLine("tryck på valfri tangent för att lämna");
-            Console.ReadKey();
-        }
-
-
-    }
-}
-*/
