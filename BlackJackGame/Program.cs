@@ -51,3 +51,58 @@ namespace BlackJackGame
         }
     }
 }
+
+ /*class Program
+    {
+        static void Main(string[] args)
+        {
+            const int GROUP_SIZE = 4;
+            const int GROUP_AMOUNT = 8;
+
+            string[] studentArray =
+             {
+             "Abdalaziz", "Johannes", "Eliyah", "Ebba", "Ossian", "Adam",
+             "Gabriel", "Ahmad", "Mukhtar", "Hugo", "Yayhe", "Alexander",
+             "Theo", "Albin", "John", "Leo", "Benjamin", "Erik", "Omar",
+             "Ajob", "Emil", "Jim", "Viggo", "Hassan", "Abd", "Noah",
+             "Sebastian", "Alfons", "Romeo", "Annie", "Gvidas", "Samir"
+            };
+            List<string> students = new List<string>();
+
+            for (int i = 0; i < studentArray.Length; i++)
+            {
+                students.Add(studentArray[i]);
+
+            }
+            Console.WriteLine("antal elever i listan " + students.Count);
+
+            Random random = new Random();
+            
+            for (int i = 1; i < GROUP_AMOUNT + 1; i++)
+            {
+                Console.WriteLine("group" + i + ":");
+
+                for (int j = 0; j < GROUP_SIZE; j++)
+                {
+                    if (students.Count == 0)
+                    {
+                        Console.WriteLine("Alla elever har fått en grupp");
+                        break;
+
+                    }
+                    int localValue = random.Next(0, students.Count);
+                    Console.WriteLine(students[localValue]);
+
+                    students.RemoveAt(localValue);
+
+                }
+                Console.Write("\n");
+            }
+            Console.WriteLine("tryck på valfri tangent för att lämna");
+            Console.ReadKey();
+        }
+
+
+    }
+}
+*/
