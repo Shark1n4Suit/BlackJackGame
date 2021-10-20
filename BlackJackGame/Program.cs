@@ -20,6 +20,43 @@ namespace BlackJackGame
             
         }
     }
+    
+    class AIcard
+    {
+        List<int> bot = new List<int>();
+        public void botdeck()
+        {
+            int cardvalue = 0;
+            int kortvärde = 0;
+            for (int botkort = 0; botkort < 52; botkort++)
+            {
+                for (kortvärde = 0; kortvärde < 16;)
+                {
+                    kortvärde++;
+                }
+
+                if (cardvalue < 16)
+                {
+                    Console.WriteLine("jag tar ett kort");
+                }
+
+                if ( kortvärde == 16 || kortvärde < 16)
+                {
+                    Console.WriteLine("Jag står över");
+                }
+            }
+        }
+    }
+    
+    class playercard
+    {
+        List<int> player = new List<int>();
+        public void playerdeck()
+        {
+
+        }
+    }
+    //E
     class deck
     {
         List<int> cards = new List<int>();
